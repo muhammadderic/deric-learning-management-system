@@ -3,7 +3,7 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 export const userRepository = {
-  async createUser(
+  async create(
     email: string, 
     passwordHash: string, 
     role: string = "student"
