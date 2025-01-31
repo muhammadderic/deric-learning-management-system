@@ -12,6 +12,21 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
 
+  backend:
+    build: .
+    container_name: deric_lms-backend
+    restart: always
+    ports:
+      - "5000:5000"  # map container port to host
+    environment:
+      DATABASE_URL: "postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:${POSTGRES_PORT}/${POSTGRES_DB}"
+    volumes:
+      - .:/app                # bind-mount source code
+      - /app/node_modules     # keep node_modules inside container
+    command: sh -c "npx prisma generate && npm run dev"
+    depends_on:
+      - postgres
+
   pgadmin:
     image: dpage/pgadmin4
     container_name: ${PGADMIN_CONTAINER_NAME}
