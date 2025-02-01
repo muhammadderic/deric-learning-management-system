@@ -3,11 +3,11 @@ import { Link, useNavigate } from "react-router-dom";
 
 import type { RegisterResponse } from "../../domain/interfaces/registerResponse";
 
-interface RegistrationFormProps {
-  onRegister: (email: string, password: string) => Promise<RegisterResponse>;
+interface LoginFormProps {
+  onLogin: (email: string, password: string) => Promise<RegisterResponse>;
 }
 
-export function RegistrationForm({ onRegister }: RegistrationFormProps) {
+export function LoginForm({ onLogin }: LoginFormProps) {
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
@@ -20,13 +20,13 @@ export function RegistrationForm({ onRegister }: RegistrationFormProps) {
     setLoading(true);
     setError("");
     try {
-      await onRegister(email, password);
+      await onLogin(email, password);
       setEmail("");
       setPassword("");
-      alert("Registration successful!");
-      navigate("/login");
+      alert("Login successful!");
+      navigate("/");
     } catch (err: any) {
-      setError(err.message || "Registration failed");
+      setError(err.message || "Login failed");
     } finally {
       setLoading(false);
     }
@@ -36,7 +36,7 @@ export function RegistrationForm({ onRegister }: RegistrationFormProps) {
     <div className="w-full max-w-xl mx-auto bg-white rounded-xl shadow-lg p-8">
       {/* Header */}
       <div className="text-center mb-6">
-        <h2 className="text-2xl font-semibold text-[#111827]">Register Form</h2>
+        <h2 className="text-2xl font-semibold text-[#111827]">Login Form</h2>
       </div>
 
       {/* Error message */}
@@ -89,22 +89,22 @@ export function RegistrationForm({ onRegister }: RegistrationFormProps) {
           {loading ? (
             <div className="flex items-center justify-center space-x-2">
               <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-              <span>Registering...</span>
+              <span>Loggin in...</span>
             </div>
           ) : (
-            "Register"
+            "Login"
           )}
         </button>
       </form>
 
-      {/* Link to Login */}
+      {/* Below Login Submit Button */}
       <div className="mt-4 text-center text-sm text-gray-700">
-        Already have an account?{" "}
+        Don’t have an account yet?{" "}
         <Link
-          to="/login"
+          to="/register"
           className="text-[#1D4ED8] hover:underline font-medium"
         >
-          Log in here
+          Register now
         </Link>
       </div>
     </div>

@@ -4,6 +4,7 @@ import MainLayout from "./modules/core/layout/MainLayout"
 
 import HomePage from "./modules/core/HomePage"
 import RegisterPage from "./modules/auth/presentation/pages/RegisterPage"
+import LoginPage from "./modules/auth/presentation/pages/LoginPage"
 
 export default function App() {
   return (
@@ -11,6 +12,7 @@ export default function App() {
       <Route path="/" element={<MainLayout />}>
         <Route path="/" element={<HomePage />} />
         <Route path="/register" element={<RegisterPage />} />
+        <Route path="/login" element={<LoginPage />} />
       </Route>
       {/* Redirect unknown routes to home */}
       <Route path="*" element={<Navigate to="/" replace />} />

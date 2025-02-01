@@ -24,9 +24,22 @@ export const authService = {
     }
   },
 
-  // Example: login function (for future use)
+  // Login user
+  // Login use register payload and response, because for now: login and register have the same payload and response
   login: async (email: string, password: string) => {
-    const response = await axios.post(`${API_BASE_URL}/api/v1/auth/login`, { email, password });
-    return response.data;
+    try {
+      const payload: RegisterPayload = { email, password };
+      const response = await axios.post<RegisterResponse>(`${API_BASE_URL}/api/v1/auth/login`, payload);
+      return response.data;
+    } catch (error: any) {
+      // Handle axios errors
+      if (error.response) {
+        // Backend returned an error response
+        throw new Error(error.response.data.message || "Login failed");
+      } else {
+        // Network or other errors
+        throw new Error(error.message || "Network error");
+      }
+    }
   },
 };

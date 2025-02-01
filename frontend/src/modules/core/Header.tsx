@@ -16,6 +16,12 @@ export default function Header() {
             Home
           </Link>
           <Link
+            to="/login"
+            className="text-white font-medium hover:text-[#FBBF24] transition-colors duration-200"
+          >
+            Login
+          </Link>
+          <Link
             to="/register"
             className="text-white font-medium hover:text-[#FBBF24] transition-colors duration-200"
           >
