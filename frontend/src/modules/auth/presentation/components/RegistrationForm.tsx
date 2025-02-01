@@ -29,7 +29,7 @@ export function RegistrationForm({ onRegister }: RegistrationFormProps) {
   };
 
   return (
-    <div className="w-full max-w-xl mx-auto mt-10 bg-white rounded-xl shadow-lg p-8">
+    <div className="w-full max-w-xl mx-auto bg-white rounded-xl shadow-lg p-8">
       {/* Header */}
       <div className="text-center mb-6">
         <h2 className="text-2xl font-semibold text-[#111827]">Register Form</h2>
