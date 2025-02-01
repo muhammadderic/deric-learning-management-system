@@ -1,0 +1,26 @@
+services:
+  backend:
+    # Mount local backend folder to container (already partially done in base)
+    volumes:
+      - ./backend:/app
+      - backend_node_modules:/app/node_modules
+    # Ensure dev command runs
+    command: sh -c "npx prisma generate && npm run dev"
+    environment:
+      NODE_ENV: development
+    ports:
+      - "5000:5000"
+
+  frontend:
+    # Mount local frontend folder to container
+    volumes:
+      - ./frontend:/app
+      - frontend_node_modules:/app/node_modules
+    # Run Vite dev server in development mode, host 0.0.0.0 for Docker
+    command: npm run dev -- --host 0.0.0.0
+    environment:
+      NODE_ENV: development
+      VITE_BACKEND_URL: http://localhost:5000
+      CHOKIDAR_USEPOLLING: "true"
+    ports:
+      - "5173:5173"
