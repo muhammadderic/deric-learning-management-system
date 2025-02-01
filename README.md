@@ -4,18 +4,8 @@ This is a full stack web application built with **Express.js (backend)**, **Post
 and a planned **frontend client** (currently under development).  
 
 ## 🚀 Features
-### Backend
 - **Authentication**
-  - Register, Login, and Logout endpoints.
-  - JWT-based access tokens + refresh tokens.
-- **Data Access Layer**
-  - Repositories for `User` and `RefreshToken`.
-  - Implemented with **Dependency Injection** for flexibility and testability.
-- **Database**
-  - PostgreSQL with Prisma ORM.
-
-### Frontend
-- Wait
+  - Register, Login, and Logout.
 
 ### DevOps
 - **Dockerized Development**
